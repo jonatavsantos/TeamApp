@@ -1,5 +1,9 @@
 import user from '../models/user.js';
 
+async function getUser (req, res, next) {
+    res.render('index')
+};
+
 async function userCreatePost (req, res, next) {
     const user = req.body
     console.log(user)
@@ -19,4 +23,4 @@ async function userReadAll (req, res, next) {
     res.json(users)
 }
 
-export default { userCreatePost, userReadAll }
+export default { userCreatePost, userReadAll, getUser }

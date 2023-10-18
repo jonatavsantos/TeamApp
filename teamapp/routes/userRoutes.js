@@ -3,8 +3,7 @@ import userController from '../controllers/UserController.js';
 
 const router = Router()
 
-router.get('/', (req, res, next) =>
-    res.render('index'))
+router.get('/', userController.getUser)
 
 router.get('/getusers', userController.userReadAll);
 

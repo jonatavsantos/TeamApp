@@ -1,6 +1,19 @@
-head
-    title Utilizando Template Engine PUG
-body
-    h1#id Este é um exemplo de como utilizar o PUG
-    p.classe Exemplo de parágrafo com classe
-    p(style={color: 'red'}) Exemplo de parágrafo com PUG e estilo inline
+html
+    head
+        link(rel="stylesheet", href="/css/style.css")
+        title Document
+    body
+    form(action='/newuser' method='post')
+        div.form
+        label(for='Name') Username:
+        input(type='text' id='name' placeholder='Name')
+
+        div.form
+        label(for='Email') Email:
+        input(type='email' id='email' placeholder='Email')
+
+        div.form
+        label(for='Password') Password: 
+        input(type='password' id='password' placeholder='Password')
+        
+        button(type='submit') Send
