@@ -1,4 +1,4 @@
-import user from '../models/user.js';
+import User from "../models/user.js";
 
 async function getUser (req, res, next) {
     res.render('index')
@@ -8,17 +8,17 @@ async function userCreatePost (req, res, next) {
     const user = req.body
     console.log(user)
 
-    const newUser = await user.create(user);
+    const newUser = await User.create(user);
 
     if (newUser) {
-        //res.redirect
+        console.log(newUser)
     } else {
         throw new HTTPError('Invalid create user, 400');
     }
 };
 
 async function userReadAll (req, res, next) {
-    const users = await user.readAll()
+    const users = await User.readAll()
     console.log(users)
     res.json(users)
 }

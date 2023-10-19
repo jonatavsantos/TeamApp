@@ -8,7 +8,7 @@ async function create(user) {
     return newUser
 } 
 
-async function readAll() {
+async function readAll(user) {
     const readUser = await prisma.user.readAll({
         data: user
     })

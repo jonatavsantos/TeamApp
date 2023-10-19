@@ -1,11 +1,11 @@
-import team from '../models/team.js';
+import Team from '../models/team.js';
 
 async function teamCreateGet (req, res, next) {
     try {
         const team = req.body
         console.log(team)
 
-        const newTeam = await team.create(team)
+        const newTeam = await Team.create(team)
         
         if(newTeam) {
             //res.redirect
@@ -16,7 +16,7 @@ async function teamCreateGet (req, res, next) {
 }
 
 async function teamReadAll (req, res, next) {
-    const teams = await team.readAll()
+    const teams = await Team.readAll()
     console.log(teams)
     res.json(teams)
 }
@@ -25,7 +25,7 @@ async function teamDelete (req, res, next) {
     const id = Number(req.params.id)
     Team.codTeam = id
 
-    if(id && (await team.remove(id))){
+    if(id && (await Team.remove(id))){
         res.sendStatus(204);
     } else {
         throw new HTTPError('Invalid delete Team, 400');
@@ -34,9 +34,9 @@ async function teamDelete (req, res, next) {
 
 async function teamUpdate (req, res, next) {
     const id = Number(req.params.id)
-    team.codTeam = id
+    Team.codTeam = id
 
-    if(id && (await team.update(id))) {
+    if(id && (await Team.update(id))) {
         res.sendStatus(204)
     } else {
         throw new HTTPError('Invalid update Team, 400');
