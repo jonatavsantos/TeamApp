@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import teamController from '../controllers/TeamController.js';
+import 'dotenv/config';
 
 const router = Router()
 

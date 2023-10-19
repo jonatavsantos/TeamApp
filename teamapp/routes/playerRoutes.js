@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import PlayerController from '../controllers/PlayerController.js';
+import 'dotenv/config';
 
 const router = Router()
 
