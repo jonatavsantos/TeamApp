@@ -11,6 +11,9 @@ app.use(morgan('tiny'));
 app.set('view engine', 'pug');
 app.set('views', './src/view');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static('public'));
 
 app.use(userRoutes);

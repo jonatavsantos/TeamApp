@@ -1,17 +1,17 @@
-import User from "../models/user.js";
+import user from "../models/user.js";
 
 async function getUser (req, res, next) {
     res.render('index')
 };
 
 async function userCreatePost (req, res, next) {
-    const user = req.body
-    console.log(user)
+    const userData = req.body
+    console.log(userData)
 
-    const newUser = await User.create(user);
+    const newUser = await user.create(userData);
 
     if (newUser) {
-        console.log(newUser)
+        res.json(newUser)
     } else {
         throw new HTTPError('Invalid create user, 400');
     }
