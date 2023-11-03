@@ -11,7 +11,7 @@ async function userCreatePost (req, res, next) {
     const newUser = await user.create(userData);
 
     if (newUser) {
-        res.json(newUser)
+        res.send('User success created')
     } else {
         throw new HTTPError('Invalid create user, 400');
     }
