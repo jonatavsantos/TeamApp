@@ -8,17 +8,38 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                <h1>Team App</h1>
-            </div>
-            <div class="home">
-                <p>Home</p>
-            </div>
-            <div class="info">
-                <p>More info</p>
+        <nav class="menu">
+            <div class="nav">
+                <ul>
+                    <li class="title">
+                        <h1>Team App</h1>
+                    </li>
+                    <li>
+                       <a href="#">More info</a>
+                    </li>
+                    <li>
+                        <a href="#">Login</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
+    <div class="box">
+        <form action="/newuser" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            
+            <label for "email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+        
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br><br>
+        
+            <input type="submit" value="Send">
+        </form>
+    </div>
 </body>
 </html>
