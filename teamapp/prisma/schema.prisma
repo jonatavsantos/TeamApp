@@ -23,20 +23,23 @@ model Team {
   nameTeam String
   countryTeam String
   cityTeam String
-  logo String
+  modality String
   codUser User @relation(fields: [mister], references: [codUser])
   mister Int
-  cpf Player @relation(fields: [player], references: [cpf])
-  player Int
+  namePlayer Player @relation(fields: [player], references: [namePlayer])
+  player String
 }
 
 model Player {
   cpf Int @id @unique
-  namePlayer String
+  namePlayer String @unique
   years Int
   height Int
   weight Int
   countryPlayer String
   cityPlayer String
+  modality Team @relation(fields: [modalityPlayer], references: [modality])
+  modalityPlayer String
   player Team[]
+  modalityPl Team[]
 }
