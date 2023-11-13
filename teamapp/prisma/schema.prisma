@@ -20,14 +20,13 @@ model User {
 
 model Team {
   codTeam Int @id @default(autoincrement())
+  codUser User @relation(fields: [mister], references: [codUser])
+  mister Int
   nameTeam String
   countryTeam String
   cityTeam String
-  modality String
-  codUser User @relation(fields: [mister], references: [codUser])
-  mister Int
-  namePlayer Player @relation(fields: [player], references: [namePlayer])
-  player String
+  modality String @unique
+  players Player[]
 }
 
 model Player {
@@ -38,8 +37,6 @@ model Player {
   weight Int
   countryPlayer String
   cityPlayer String
-  modality Team @relation(fields: [modalityPlayer], references: [modality])
-  modalityPlayer String
-  player Team[]
-  modalityPl Team[]
+  team Team @relation(fields: [codTeam], references: [codTeam])
+  codTeam Int
 }
