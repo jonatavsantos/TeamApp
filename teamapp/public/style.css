@@ -33,7 +33,17 @@ header {
     width: 15%;
     margin: 0 auto;
     margin-top: 200px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+    box-shadow: 5px 5px 30px rgb(19, 3, 241);
+}
+
+input {
+    width: 10rem;
+}
+
+.submit {
+    background-color: blue;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px){
@@ -45,10 +55,10 @@ header {
         width: 15%;
         margin: 0 auto;
         margin-top: 200px;
-        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.9);
+        box-shadow: 5px 5px 30px rgb(0, 0, 0);
     }
 
     input {
-        width: 1rem;
+        width: 5rem;
     }
 }
