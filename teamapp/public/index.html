@@ -15,7 +15,7 @@
                         <h1>Team App</h1>
                     </li>
                     <li>
-                        <a href="login/login.html">Login</a>
+                        <a href="/login">Login</a>
                     </li>
                 </ul>
             </div>
@@ -23,13 +23,13 @@
     </header>
     <div class="box">
         <form action="/newuser" method="post">
-            <input type="text" id="name" name="name" required placeholder="Name">
+            <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
             <br><br>
             
-            <input type="email" id="email" name="email" required placeholder="E-mail">
+            <input type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
             <br><br>
         
-            <input type="password" id="password" name="password" required placeholder="Password">
+            <input type="password" id="password" name="password" required placeholder="Password" autocomplete="off">
             <br><br>
         
             <input class="submit" type="submit" value="SEND">
