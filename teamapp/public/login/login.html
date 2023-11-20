@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Team App</title>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <div class="nav">
+                <ul>
+                    <li class="title">
+                        <h1>Team App</h1>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="box">
+        <form action="/newuser" method="post">
+            <input type="text" id="name" name="name" required placeholder="Name">
+            <br><br>
+            
+            <input type="email" id="email" name="email" required placeholder="E-mail">
+            <br><br>
+        
+            <input type="password" id="password" name="password" required placeholder="Password">
+            <br><br>
+        
+            <input class="submit" type="submit" value="SEND">
+        </form>
+    </div>
+</body>
+</html>

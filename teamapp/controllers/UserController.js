@@ -1,4 +1,7 @@
 import user from "../models/user.js";
+import bcrypt from 'bcrypt';
+
+const saltRounds = Number(process.env.SALT_ROUNDS);
 
 async function getUser (req, res, next) {
     res.render('index')
@@ -7,6 +10,10 @@ async function getUser (req, res, next) {
 async function userCreatePost (req, res, next) {
     const userData = req.body
     console.log(userData)
+
+    const hash = await bcrypt.hash(user.password, saltRounds);
+
+    user.password = hash;
 
     const newUser = await user.create(userData);
 

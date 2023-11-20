@@ -37,4 +37,14 @@ async function update(id, user) {
     return updateUser
 }
 
-export default { create, readAll, remove, update };
+async function readByEmail(email) {
+    const userEmail = await prisma.user.findFirst({
+        where: {
+            email,
+        },
+    })
+
+    return userEmail
+}
+
+export default { create, readAll, remove, update, readByEmail };
