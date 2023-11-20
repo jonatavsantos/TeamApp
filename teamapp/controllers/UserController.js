@@ -11,9 +11,9 @@ async function userCreatePost (req, res, next) {
     const userData = req.body
     console.log(userData)
 
-    const hash = await bcrypt.hash(user.password, saltRounds);
+    const hash = await bcrypt.hash(userData.password, saltRounds);
 
-    user.password = hash;
+    userData.password = hash;
 
     const newUser = await user.create(userData);
 
