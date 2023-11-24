@@ -19,15 +19,16 @@
         </nav>
     </header>
     <div class="box">
-        <form action="/signin" method="post">
-            <input type="email" id="email" name="email" required placeholder="E-mail">
+        <form class="form" onsubmit="handleSubmit(event)">
+            <input type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
             <br><br>
         
             <input type="password" id="password" name="password" required placeholder="Password">
             <br><br>
         
-            <input class="submit" type="submit" value="SEND">
+            <button type="submit">Send</button>
         </form>
     </div>
+<script type="module" src="../../js/login.js"></script>
 </body>
 </html>

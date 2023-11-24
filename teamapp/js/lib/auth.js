@@ -13,13 +13,13 @@ function getToken() {
 function login(token) {
     localStorage.setItem('TeamApp: token', token);
 
-    window.location.href = '#';
+    window.location.href = '/start';
 }
 
 function logout() {
     localStorage.removeItem('TeamApp: token');
 
-    window.location.href = '/';
+    window.location.href = '/login';
 }
 
 export default { isAuthenticated, getToken, login, logout }

@@ -6,6 +6,8 @@ const router = Router()
 
 router.get('/', userController.getUser);
 
+router.get('/start', userController.getStart);
+
 router.get('/login', userController.getLogin);
 
 router.get('/getusers', userController.userReadAll);

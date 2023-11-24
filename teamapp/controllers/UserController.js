@@ -9,6 +9,10 @@ async function getUser (req, res, next) {
     res.render('index')
 };
 
+async function getStart (req, res, next) {
+    res.redirect('start.html');
+}
+
 async function userCreatePost (req, res, next) {
     const userData = req.body
     console.log(userData)
@@ -44,7 +48,6 @@ async function SignIn (req, res, next) {
             expiresIn: 3600,
         });
         console.log({ auth: true, token });
-        res.redirect('/')
     } else {
         throw new Error('Token not found')
     }
@@ -56,4 +59,4 @@ async function userReadAll (req, res, next) {
     res.json(users)
 }
 
-export default { userCreatePost, getUser, getLogin, userReadAll, SignIn }
+export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn }
