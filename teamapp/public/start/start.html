@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/start.css">
     <title>Team App</title>
 </head>
 <body>
-    <button type="button" onclick="logout()"></button>
+    <header>
+        <nav class="menu">
+            <div class="nav">
+                <ul>
+                    <li class="title">
+                        <h1>Team App</h1>
+                    </li>
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    <li>
+                        <button type="button" onclick="logout()">Exit</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 </body>
 <script type="module" src="../../js/logout.js"></script>
 </html>
