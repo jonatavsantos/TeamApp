@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const saltRounds = Number(process.env.SALT_ROUNDS);
 
 async function getUser (req, res, next) {
-    res.render('index')
+    res.redirect('index.html')
 };
 
 async function getStart (req, res, next) {

@@ -36,7 +36,13 @@ header {
     box-shadow: 5px 5px 30px rgb(3, 86, 241);
 }
 
-input, button {
+.login {
+    background: none;
+    border: none;
+    cursor: pointer; 
+}   
+
+input, .send {
     border-radius: 5px;
     height: 19px;
     width: 12rem;

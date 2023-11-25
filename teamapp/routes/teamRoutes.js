@@ -4,6 +4,8 @@ import 'dotenv/config';
 
 const router = Router()
 
+router.get('/team', teamController.viewTeam);
+
 router.get('/getteams', teamController.teamReadAll);
 
 router.post('/newteam', teamController.teamCreateGet);

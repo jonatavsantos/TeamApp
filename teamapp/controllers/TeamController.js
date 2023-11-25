@@ -1,5 +1,9 @@
 import Team from '../models/team.js';
 
+async function viewTeam (req, res, next) {
+    res.redirect('team.html')
+}
+
 async function teamCreateGet (req, res, next) {
     try {
         const team = req.body
@@ -43,4 +47,4 @@ async function teamUpdate (req, res, next) {
     }
 }
 
-export default { teamCreateGet, teamDelete, teamReadAll, teamUpdate };
+export default { viewTeam, teamCreateGet, teamDelete, teamReadAll, teamUpdate };
