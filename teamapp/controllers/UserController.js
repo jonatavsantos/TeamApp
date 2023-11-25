@@ -35,7 +35,8 @@ async function getLogin (req, res, next) {
 }
 
 async function SignIn (req, res, next) {
-    const { email, password } = req.body
+    try{
+        const { email, password } = req.body
 
     const userCompare = await user.readByEmail(email);
 
@@ -47,9 +48,12 @@ async function SignIn (req, res, next) {
         const token = jwt.sign({ codUser }, process.env.JWT_SECRET, {
             expiresIn: 3600,
         });
-        console.log({ auth: true, token });
+        res.json({ auth: true, token });
     } else {
         throw new Error('Token not found')
+    }
+    } catch (error) {
+        res.status(401).json({ error: 'User not exist' })
     }
 }
 

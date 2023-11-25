@@ -7,19 +7,30 @@ function isAuthenticated() {
 }
 
 function getToken() {
-    return localStorage.getItem('TeamApp:token');
+    try {
+        return localStorage.getItem('TeamApp:token');
+    } catch (error) {
+        console.error('Erro ao obter token do localStorage:', error);
+        return null;
+    }
 }
 
 function login(token) {
-    localStorage.setItem('TeamApp:token', token);
-
-    window.location.href = 'start.html';
+    try {
+        localStorage.setItem('TeamApp:token', token);
+        window.location.href = '/start';
+    } catch (error) {
+        console.error('Erro ao definir token no localStorage:', error);
+    }
 }
 
 function logout() {
-    localStorage.removeItem('TeamApp:token');
-
-    window.location.href = '/login';
+    try {
+        localStorage.removeItem('TeamApp:token');
+        window.location.href = '/login';
+    } catch (error) {
+        console.error('Erro ao remover token do localStorage:', error);
+    }
 }
 
 export default { isAuthenticated, getToken, login, logout }
