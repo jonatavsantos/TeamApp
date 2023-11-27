@@ -16,6 +16,7 @@ model User {
   email String
   password String
   mister Team[]
+  userId Image?
 }
 
 model Team {
@@ -39,4 +40,11 @@ model Player {
   cityPlayer String
   team Team @relation(fields: [codTeam], references: [codTeam])
   codTeam Int
+}
+
+model Image {
+  id Int @id @default(autoincrement())
+  path String
+  codUser User @relation(fields: [userId], references: [codUser])
+  userId Int @unique
 }
