@@ -16,4 +16,8 @@ router.post('/signin', userController.SignIn);
 
 router.post('/newuser', userController.userCreatePost);
 
+router.post('/users/image', userController.postImage);
+
+router.put('/users/image', userController.updateImage);
+
 export default router;

@@ -1,8 +1,8 @@
 import user from "../models/user.js";
-import dotenv from 'dotenv';
+import multer from 'multer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
+import uploadConfig from '../config/multer.js';
 const saltRounds = Number(process.env.SALT_ROUNDS);
 
 async function getUser (req, res, next) {
@@ -63,4 +63,44 @@ async function userReadAll (req, res, next) {
     res.json(users)
 }
 
-export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn }
+function postImage (){
+    multer(uploadConfig).single('image'), async function (req, res) {
+    try {
+        const codUser = req.codUser;
+
+        if (req.file) {
+            const path = `/imgs/profile/${req.file.filename}`;
+
+            const image = await Image.update({ codUser, path });
+
+            res.json(image);
+        } else {
+            throw new Error();
+        }
+    } catch (error) {
+        throw new HTTPError('Unable to create image', 400);
+    }
+}
+}
+
+function updateImage() {
+multer(uploadConfig).single('image'), async (req, res)  => {
+    try {
+        const codUser = req.codUser;
+
+        if (req.file) {
+            const path = `/imgs/profile/${req.file.filename}`;
+
+            const image = await Image.update({ codUser, path });
+
+            res.json(image);
+        } else {
+            throw new Error();
+        }
+    } catch (error) {
+        throw new HTTPError('Unable to create image', 400);
+    }
+}
+}
+
+export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn, postImage, updateImage }
