@@ -13,7 +13,7 @@ function getToken() {
 function login(token) {
     localStorage.setItem('TeamApp: token', token);
 
-    window.location.href = '#';
+    window.location.href = '/start';
 }
 
 function logout() {

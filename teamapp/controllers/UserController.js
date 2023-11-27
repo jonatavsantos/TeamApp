@@ -38,13 +38,13 @@ async function SignIn (req, res, next) {
     try{
         const { email, password } = req.body
 
-    const userCompare = await user.readByEmail(email);
+        const userCompare = await user.readByEmail(email);
 
-    const { cod: codUser, password: hash } = userCompare;
+        const { cod: codUser, password: hash } = userCompare;
 
-    const match = bcrypt.compare(password, hash);
+        const match = await bcrypt.compare(password, hash);
 
-    if(match) {
+        if(match) {
         const token = jwt.sign({ codUser }, process.env.JWT_SECRET, {
             expiresIn: 3600,
         });
