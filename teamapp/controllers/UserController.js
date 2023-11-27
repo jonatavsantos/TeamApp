@@ -48,7 +48,7 @@ async function SignIn (req, res, next) {
         const token = jwt.sign({ codUser }, process.env.JWT_SECRET, {
             expiresIn: 3600,
         });
-        res.json({ auth: true, token });
+        console.log({ auth: true, token });
     } else {
         throw new Error('Token not found')
     }
