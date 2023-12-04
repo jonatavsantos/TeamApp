@@ -16,6 +16,23 @@ async function readAll(user) {
     return readUser
 }
 
+async function read(userId) {
+    const user = await prisma.user.findFirst({
+      where: {
+        userId,
+      },
+      include: {
+        image: {
+          select: {
+            path: true,
+          },
+        },
+      },
+    });
+  
+    return user;
+  }
+
 async function remove(id) {
     const removeUser = await prisma.user.remove({
         where: {
@@ -47,4 +64,4 @@ async function readByEmail(email) {
     return userEmail
 }
 
-export default { create, readAll, remove, update, readByEmail };
+export default { create, readAll, remove, update, readByEmail, read };

@@ -12,6 +12,10 @@ router.get('/login', userController.getLogin);
 
 router.get('/getusers', userController.userReadAll);
 
+router.get('/profile', userController.readProfile);
+
+router.get('/users/me', userController.getProfile);
+
 router.post('/signin', userController.SignIn);
 
 router.post('/newuser', userController.userCreatePost);

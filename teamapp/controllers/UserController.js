@@ -1,4 +1,4 @@
-import user from "../models/user.js";
+import users from "../models/user.js";
 import multer from 'multer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -21,7 +21,7 @@ async function userCreatePost (req, res, next) {
 
     userData.password = hash;
 
-    const newUser = await user.create(userData);
+    const newUser = await users.create(userData);
 
     if (newUser) {
         res.redirect('/login');
@@ -38,7 +38,7 @@ async function SignIn (req, res, next) {
     try{
         const { email, password } = req.body
 
-        const userCompare = await user.readByEmail(email);
+        const userCompare = await users.readByEmail(email);
 
         const { cod: codUser, password: hash } = userCompare;
 
@@ -58,12 +58,26 @@ async function SignIn (req, res, next) {
 }
 
 async function userReadAll (req, res, next) {
-    const users = await user.readAll()
+    const users = await users.readAll()
     console.log(users)
     res.json(users)
 }
 
-function postImage (){
+async function readProfile(req, res, next) {
+    res.redirect('profile.html')
+}
+
+async function getProfile(req, res, next) {
+    const userId = req.userId;
+
+    const user = await users.read(userId);
+
+    delete user.password;
+
+    return res.json(user);
+}
+
+async function postImage (){
     multer(uploadConfig).single('image'), async function (req, res) {
     try {
         const codUser = req.codUser;
@@ -83,7 +97,7 @@ function postImage (){
 }
 }
 
-function updateImage() {
+async function updateImage() {
 multer(uploadConfig).single('image'), async (req, res)  => {
     try {
         const codUser = req.codUser;
@@ -103,4 +117,4 @@ multer(uploadConfig).single('image'), async (req, res)  => {
 }
 }
 
-export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn, postImage, updateImage }
+export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn, postImage, updateImage, readProfile, getProfile }
