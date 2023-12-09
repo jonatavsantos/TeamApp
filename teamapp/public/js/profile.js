@@ -7,6 +7,9 @@ let formMethod;
 async function loadProfile() {
   const response = await fetch('/users/me', {
     method: 'get',
+    headers: {
+      Authorization: `Bearer ${API.getToken()}`,
+    },
   });
 
   const user = await response.json();
@@ -41,6 +44,9 @@ form.onsubmit = async (event) => {
     const response = await fetch('/users/image', {
       method: 'post',
       body: image,
+      headers: {
+        Authorization: `Bearer ${API.getToken()}`,
+      },
     });
 
     newImage = await response.json();

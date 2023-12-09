@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userController from '../controllers/UserController.js';
+import { isAuthenticated } from '../middleware/verify.js'
 import 'dotenv/config';
 
 const router = Router()
@@ -14,7 +15,7 @@ router.get('/getusers', userController.userReadAll);
 
 router.get('/profile', userController.readProfile);
 
-router.get('/users/me', userController.getProfile);
+router.get('/users/me', isAuthenticated, userController.getProfile);
 
 router.post('/signin', userController.SignIn);
 

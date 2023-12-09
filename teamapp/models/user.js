@@ -16,10 +16,10 @@ async function readAll(user) {
     return readUser
 }
 
-async function read(userId) {
+async function read(codUser) {
     const user = await prisma.user.findFirst({
       where: {
-        userId,
+        codUser,
       },
       include: {
         image: {

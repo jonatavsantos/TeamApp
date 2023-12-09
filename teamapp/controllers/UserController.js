@@ -1,4 +1,5 @@
 import users from "../models/user.js";
+import Image from "../models/image.js";
 import multer from 'multer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -68,9 +69,9 @@ async function readProfile(req, res, next) {
 }
 
 async function getProfile(req, res, next) {
-    const userId = req.userId;
+    const codUser = req.codUser;
 
-    const user = await users.read(userId);
+    const user = await users.read(codUser);
 
     delete user.password;
 
@@ -79,21 +80,21 @@ async function getProfile(req, res, next) {
 
 async function postImage (){
     multer(uploadConfig).single('image'), async function (req, res) {
-    try {
-        const codUser = req.codUser;
-
-        if (req.file) {
-            const path = `/imgs/profile/${req.file.filename}`;
-
-            const image = await Image.update({ codUser, path });
-
-            res.json(image);
-        } else {
-            throw new Error();
-        }
-    } catch (error) {
-        throw new HTTPError('Unable to create image', 400);
-    }
+        try {
+            const codUser = req.codUser;
+      
+            if (req.file) {
+              const path = `/imgs/profile/${req.file.filename}`;
+      
+              await Image.create({ codUser, path });
+      
+              res.sendStatus(201);
+            } else {
+              throw new Error();
+            }
+          } catch (error) {
+            throw new HTTPError('Unable to create image', 400);
+          }
 }
 }
 
