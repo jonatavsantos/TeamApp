@@ -22,7 +22,7 @@ async function read(codUser) {
         codUser,
       },
       include: {
-        image: {
+        userId: {
           select: {
             path: true,
           },

@@ -54,6 +54,9 @@ form.onsubmit = async (event) => {
     const response = await fetch('/users/image', {
       method: 'put',
       body: image,
+      headers: {
+        Authorization: `Bearer ${API.getToken()}`,
+      },
     });
 
     newImage = await response.json();

@@ -1,11 +1,11 @@
 import prisma from '../db/connect.js'
 
-async function create({ userId, path }) {
+async function create({ codUser, path }) {
     try {
         const newImage = await prisma.image.create({
             data: {
                 path,
-                userId,
+                codUser,
             },
         });
 
@@ -15,10 +15,10 @@ async function create({ userId, path }) {
     }
 }
 
-async function update({ userId, path }) {
+async function update({ codUser, path }) {
     const newImage = await prisma.image.update({
         where: {
-            userId,
+            codUser,
         },
         data: {
             path,

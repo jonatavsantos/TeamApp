@@ -3,6 +3,7 @@ import Image from "../models/image.js";
 import multer from 'multer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
 import uploadConfig from '../config/multer.js';
 const saltRounds = Number(process.env.SALT_ROUNDS);
 
@@ -41,7 +42,7 @@ async function SignIn (req, res, next) {
 
         const userCompare = await users.readByEmail(email);
 
-        const { cod: codUser, password: hash } = userCompare;
+        const { codUser, password: hash } = userCompare;
 
         const match = await bcrypt.compare(password, hash);
 
@@ -86,9 +87,9 @@ async function postImage (){
             if (req.file) {
               const path = `/imgs/profile/${req.file.filename}`;
       
-              await Image.create({ codUser, path });
+              const newImage = await Image.create({ codUser, path });
       
-              res.sendStatus(201);
+              res.sendStatus(201).json(newImage);
             } else {
               throw new Error();
             }
