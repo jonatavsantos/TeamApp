@@ -1,5 +1,5 @@
 import users from "../models/user.js";
-import Image from "../models/image.js";
+import image from "../models/image.js";
 import multer from 'multer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -79,15 +79,16 @@ async function getProfile(req, res, next) {
     return res.json(user);
 }
 
-async function postImage (){
-    multer(uploadConfig).single('image'), async function (req, res) {
+function postImage(){
+    multer(uploadConfig).single('image'), 
+    async (req, res, next) => {
         try {
             const codUser = req.codUser;
       
             if (req.file) {
               const path = `/imgs/profile/${req.file.filename}`;
       
-              const newImage = await Image.create({ codUser, path });
+              const newImage = await image.create({ codUser, path });
       
               res.sendStatus(201).json(newImage);
             } else {
@@ -99,17 +100,18 @@ async function postImage (){
 }
 }
 
-async function updateImage() {
-multer(uploadConfig).single('image'), async (req, res)  => {
+function updateImage() {
+multer(uploadConfig).single('image'), 
+async (req, res)  => {
     try {
         const codUser = req.codUser;
 
         if (req.file) {
             const path = `/imgs/profile/${req.file.filename}`;
 
-            const image = await Image.update({ codUser, path });
+            const Image = await image.update({ codUser, path });
 
-            res.json(image);
+            res.json(Image);
         } else {
             throw new Error();
         }

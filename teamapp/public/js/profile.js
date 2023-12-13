@@ -34,6 +34,7 @@ async function loadProfile() {
 }
 
 form.onsubmit = async (event) => {
+  console.log('error'); 
   event.preventDefault();
 
   const image = new FormData(form);
