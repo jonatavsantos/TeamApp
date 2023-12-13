@@ -1,6 +1,6 @@
 import API from './lib/auth.js';
-
-const form = document.querySelector('form');
+try{
+  const form = document.querySelector('form');
 
 let formMethod;
 
@@ -33,8 +33,7 @@ async function loadProfile() {
   document.querySelector('#profile-image').src = image;
 }
 
-form.onsubmit = async (event) => {
-  console.log('error'); 
+form.onsubmit = async (event) => { 
   event.preventDefault();
 
   const image = new FormData(form);
@@ -51,6 +50,7 @@ form.onsubmit = async (event) => {
     });
 
     newImage = await response.json();
+    console.log(newImage);
   } else if (formMethod === 'put') {
     const response = await fetch('/users/image', {
       method: 'put',
@@ -70,4 +70,7 @@ form.onsubmit = async (event) => {
 
 if (API.isAuthenticated()) {
   loadProfile();
+}
+} catch {
+  console.error('Error in update image!');
 }

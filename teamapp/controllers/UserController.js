@@ -81,7 +81,7 @@ async function getProfile(req, res, next) {
 
 function postImage(){
     multer(uploadConfig).single('image'), 
-    async (req, res, next) => {
+    async (req, res) => {
         try {
             const codUser = req.codUser;
       
