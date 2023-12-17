@@ -2,7 +2,6 @@ import users from "../models/user.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import uploadConfig from '../config/multer.js';
 const saltRounds = Number(process.env.SALT_ROUNDS);
 
 async function getUser (req, res, next) {
