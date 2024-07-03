@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import teamController from '../controllers/TeamController.js';
+import { isAuthenticated } from '../middleware/verify.js';
 import 'dotenv/config';
 
 const router = Router()
@@ -8,7 +9,7 @@ router.get('/team', teamController.viewTeam);
 
 router.get('/getteams', teamController.teamReadAll);
 
-router.post('/newteam', teamController.teamCreateGet);
+router.post('/newteam',isAuthenticated, teamController.teamCreateGet);
 
 router.delete('/team/:id', teamController.teamDelete);
 

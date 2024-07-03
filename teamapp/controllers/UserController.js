@@ -1,10 +1,7 @@
 import users from "../models/user.js";
-import image from "../models/image.js";
-import multer from 'multer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import uploadConfig from '../config/multer.js';
 const saltRounds = Number(process.env.SALT_ROUNDS);
 
 async function getUser (req, res, next) {
@@ -65,60 +62,4 @@ async function userReadAll (req, res, next) {
     res.json(users)
 }
 
-async function readProfile(req, res, next) {
-    res.redirect('profile.html')
-}
-
-async function getProfile(req, res, next) {
-    const codUser = req.codUser;
-
-    const user = await users.read(codUser);
-
-    delete user.password;
-
-    return res.json(user);
-}
-
-function postImage(){
-    multer(uploadConfig).single('image'), 
-    async (req, res) => {
-        try {
-            const codUser = req.codUser;
-      
-            if (req.file) {
-              const path = `/imgs/profile/${req.file.filename}`;
-      
-              const newImage = await image.create({ codUser, path });
-      
-              res.sendStatus(201).json(newImage);
-            } else {
-              throw new Error();
-            }
-          } catch (error) {
-            throw new HTTPError('Unable to create image', 400);
-          }
-}
-}
-
-function updateImage() {
-multer(uploadConfig).single('image'), 
-async (req, res)  => {
-    try {
-        const codUser = req.codUser;
-
-        if (req.file) {
-            const path = `/imgs/profile/${req.file.filename}`;
-
-            const Image = await image.update({ codUser, path });
-
-            res.json(Image);
-        } else {
-            throw new Error();
-        }
-    } catch (error) {
-        throw new HTTPError('Unable to create image', 400);
-    }
-}
-}
-
-export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn, postImage, updateImage, readProfile, getProfile }
+export default { userCreatePost, getUser, getStart, getLogin, userReadAll, SignIn }

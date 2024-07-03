@@ -6,13 +6,15 @@ async function viewTeam (req, res, next) {
 
 async function teamCreateGet (req, res, next) {
     try {
+        const mister = req.codUser
         const team = req.body
+        team.mister = mister
         console.log(team)
 
         const newTeam = await Team.create(team)
         
         if(newTeam) {
-            //res.redirect
+            res.json('Team created sucessfull');
         } 
     } catch {
         throw new HTTPError('Invalid create Team, 400');
